@@ -1,0 +1,156 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+body { padding-top: 80px; }
+
+.modal-header > h3 { margin: 0; }
+.navbar-inverse { background-color: rgba(35,35,35,.9); }
+.navbar-brand { margin-bottom: 0; }
+.navbar .container { text-align: right; }
+
+@media (min-width: 1000px) {
+	.modal-dialog {
+		width: 750px;
+	}
+}
+
+.tooltip { z-index: 2000; }
+.strike { text-decoration: line-through; }
+
+#trans-form [data-type] {
+    height: 120px;
+}
+
+.form-group a[tooltip] span {
+	margin-top: 8px;
+}
+
+input.debit { color: #d9534f; }
+input.credit { color: #5cb85c; }
+
+table.monthly, table.day-header {
+    width: 98%;
+    table-layout: fixed;
+    margin: 4px 1%;
+}
+
+table.day-header {
+	position: fixed;
+	top: 50px;
+	left: 0;
+	background-color: rgba(255,255,255,.9);
+	box-shadow: 0 3px 3px rgba(255,255,255,.7);
+	margin-top: 0;
+	z-index: 5;
+}
+
+table.mon-trans {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 4px;
+}
+
+.day-header th {
+    text-align: center;
+    line-height: 2em;
+}
+
+.monthly td {
+    white-space: nowrap;
+    font-size: .7em;
+    cursor: normal;
+    border: 1px solid #333;
+}
+
+/*
+.monthly td.day.Jan, .monthly td.day.Mar, .monthly td.day.May, .monthly td.day.Jul, .monthly td.day.Sep, .monthly td.day.Nov {
+    border-color: #333;
+}
+
+.monthly td.day.Feb, .monthly td.day.Apr, .monthly td.day.Jun, .monthly td.day.Aug, .monthly td.day.Oct, .monthly td.day.Dec {
+    border-color: #333;
+}
+*/
+
+.monthly td.pad {
+    border-width: 0;
+}
+
+.monthly td.past {
+	opacity: .5;
+	background-color: #eee;
+	border-color: #ccc
+}
+
+.monthly td.past:last-of-type {
+	border-color-right: #333;
+}
+
+.monthly td > span > h3 {
+    margin: 0;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.monthly td > span > h3 > span {
+    float: right;
+}
+
+.monthly td > span > p {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 16px;
+}
+
+.monthly td > span > p.debit {
+    color: red;
+}
+
+.monthly td.day > span {
+    display: block;
+    min-height: 120px;
+}
+
+.mon-trans td {
+    border-width: 0;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.mon-trans td > span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #5cb85c;
+    margin: 0 2px;
+}
+
+.mon-trans td > span.glyphicon {
+    color: #fff;
+    cursor: alias;
+}
+
+.mon-trans td.debit > span {
+    background-color: #d9534f;
+}
+
+.mon-trans td.nocalc > span {
+    background-color: #f0ad4e;
+}
+
+.mon-trans tr > td:nth-child(1) {
+    width: 14px;
+    overflow: hidden;
+}
+
+.mon-trans tr > td:nth-child(2) {
+    width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mon-trans tr > td:nth-child(3) {
+    text-align: right;
+    padding-right: 2px;
+}

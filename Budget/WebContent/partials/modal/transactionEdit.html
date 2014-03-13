@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h3>Edit Transaction</h3>
+</div>
+<div class="modal-body">
+    <p>
+        Edit.
+    </p>
+    <form class="form-horizontal" role="form" ng-submit="ok()">
+        <div class="form-group">
+            <label for="transName" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+            	<p class="form-control-static">{{input.transName}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="trans" class="col-sm-3 control-label">Transaction</label>
+            <div class="col-sm-9">
+                <p class="form-control-static">{{ { true: 'Debit', false: 'Credit' }[input.isDebit] }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transType" class="col-sm-3 control-label">Type</label>
+            <div class="col-sm-9">
+                <p class="form-control-static">{{ { false: 'One-Time', true: 'Repeating' }[input.transIntType === 1 || input.transIntType === 2] }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transAmount" class="col-sm-3 control-label">Amount</label>
+            <div class="col-sm-9">
+                <input type="number" step=".01" ng-model="input.transAmount" class="form-control {{ {true: 'debit', false: 'credit'}[input.isDebit] }}" id="transAmount" placeholder="9999.99"/>
+            </div>
+        </div>
+        <div ng-if="input.transIntType !== 1 && input.transIntType !== 2">
+            <div class="form-group">
+                <label for="transDate" class="col-sm-3 control-label">Date</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">{{input.transDate}}</p>
+                </div>
+            </div>
+        </div>
+        <div ng-if="input.transIntType === 1 || input.transIntType === 2">
+            <div class="form-group">
+                <label for="transDate" class="col-sm-3 control-label">Begin Date</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static">{{input.transDate}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="transEndDate" class="col-sm-3 control-label">End Date</label>
+                <div class="col-sm-9">
+                	<input type="date" ng-model="input.transEndDate" class="form-control" id="transEndDate"/>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-sm-9 col-sm-offset-3">
+            		<button class="btn btn-warning" ng-click="input.transEndDate = input.currentDate">Mark as Last</button>
+            		<button class="btn btn-info" ng-disabled="input.transEndDate == input.transEndDateOld" ng-click="updateEnd()">Update End Date</button>
+            	</div>
+            </div>
+            <div class="form-group">
+                <label for="transInt" class="col-sm-3 control-label">Interval</label>
+                <div class="col-sm-9">
+                	<p class="form-control-static">{{input.transInt}} {{ { 1: 'Days', 2: 'Months' }[input.transIntType] }}</p>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!!input.transWeb">
+            <div class="form-group">
+                <label for="transWeb" class="col-sm-3 control-label">Website</label>
+                <div class="col-sm-9">
+                    <p class="form-control-static"><a href ng-click="loadSite(input.transWeb)">{{input.transWeb}}</a></p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" ng-click="toggleCalc()">{{ { true: 'Ignore in Calculation', false: 'Add Back to Calculation' }[input.transCalc] }}</button>
+	<button class="btn btn-info" ng-disabled="input.transAmountOld == input.transAmount" ng-click="updateFuture()">Update This &amp; Future</button>
+	<button class="btn btn-info" ng-disabled="input.transAmountOld == input.transAmount" ng-click="update()">Update Occurrence</button>
+	<button class="btn btn-success" ng-click="paid()">{{ { true: 'Mark Unpaid', false: 'Mark Paid' }[input.isPaid] }}</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,30 @@
+<ng-include src="'partials/nav.html'"></ng-include>
+
+<table ng-if="!!budget.name" class="day-header">
+    <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+</table>
+<table ng-if="!!budget.name" class="monthly">
+    <tr ng-repeat="week in budget.weeks">
+        <td ng-repeat="day in week" id="b{{day.t}}" class="day {{day.month}} {{ {true: 'pad'}[day.pad] }} {{ { true: 'past', false: 'present' }[currentDate > day.t] }}">
+            <span ng-if="!day.pad" class="{{ {true: 'bg-danger'}[day.a < 0] }}">
+                <h3>{{day.month}}<span>{{day.day}}</span></h3>
+                <p class="{{ { true: 'credit', false: 'debit' }[day.a >= 0] }}credit">{{day.a | currency}}</p>
+                <table ng-if="day.i && day.i.length" class="mon-trans">
+                    <tr ng-repeat="trans in day.i" tooltip="{{trans.nt}}">
+                        <td class="{{ {true: 'credit', false: 'debit'}[trans.a > 0 && trans.cl !== false] }} {{ {true: 'nocalc'}[trans.cl === false] }}"><span class="{{ { true: 'glyphicon glyphicon-link'}[!!trans.w] }}" ng-click="loadSite(trans.w)"></span></td>
+                        <td ng-click="editTrans(trans.idx, day.t)" ng-class="{ strike: isPaid(trans.idx, day.t) }">{{trans.n}}</td>
+                        <td ng-class="{ strike: isPaid(trans.idx, day.t) }">{{getAmount(trans.idx, day.t) | number:2}}</td>
+                    </tr>
+                </table>
+            </span>
+        </td>
+    </tr>
+</table>

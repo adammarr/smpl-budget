@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<p class="navbar-brand">{{budget.name}}</p>
+  	<div class="container">
+    	<button id="addintbtn" class="btn btn-info navbar-btn" ng-if="budget.name" ng-click="addTrans()">Add Transaction</button>
+    	<ul class="nav navbar-nav navbar-right">
+	    	<li class="dropdown">
+	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Budgets <b class="caret"></b></a>
+	        	<ul class="dropdown-menu">
+	            	<li><a href ng-click="create()">Create a Budget</a></li>
+	            	<li><a href="#">Another action</a></li>
+	            	<li><a href="#">Something else here</a></li>
+	            	<li class="divider"></li>
+	            	<li><a href ng-click="export()">Export</a></li>
+	          	</ul>
+	        </li>
+        </ul>
+  	</div>
+</nav>
