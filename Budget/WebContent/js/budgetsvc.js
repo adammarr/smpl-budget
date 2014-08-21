@@ -132,7 +132,7 @@ app.factory('BudgetService', function() {
                     if(io.s < end) {
                         s.push(io.s);
                         if(io.next) {
-                            while(io.next() < end) {
+                            while(io.next() < end && (!budget.transactions[i].e || io.s < budget.transactions[i].e)) {
                                 s.push(io.s);
                             }
                         }

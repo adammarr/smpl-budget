@@ -16,7 +16,7 @@ var TransactionEditCtrl = function($scope, BudgetService, $modalInstance, tidx, 
         transCalc: (trans.cl === undefined || !!trans.cl),
         transIntType: trans.t,
         transDate: moment.unix(trans.d).format('MM/DD/YYYY'),
-        transEndDate: moment.unix(trans.e).format('MM/DD/YYYY'),
+        transEndDate: moment.unix(trans.e).format('YYYY-MM-DD'),
         transEndDateOld: moment.unix(trans.e).format('MM/DD/YYYY'),
         currentDate: moment().format('MM/DD/YYYY'),
         transWeb: trans.w,
@@ -64,6 +64,9 @@ var TransactionEditCtrl = function($scope, BudgetService, $modalInstance, tidx, 
     
     $scope.updateEnd = function () {
         //check errors
+    	console.log($scope.input.transEndDate);
+    	trans.e = ($scope.input.transEndDate) ? moment($scope.input.transEndDate).unix() : '';
+    	BudgetService.refresh();
         $modalInstance.close();
     };
 
