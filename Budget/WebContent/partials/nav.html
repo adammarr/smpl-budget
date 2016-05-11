@@ -11,6 +11,8 @@
 	            	<li><a href="#">Something else here</a></li>
 	            	<li class="divider"></li>
 	            	<li><a href ng-click="export()">Export</a></li>
+	            	<li class="divider"></li>
+	            	<li ng-repeat="mybud in budget.budgets"><a href ng-click="budget.load(mybud)">{{mybud}}</a></li>
 	          	</ul>
 	        </li>
         </ul>
